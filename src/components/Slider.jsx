@@ -33,7 +33,9 @@ export default function Slider() {
         <section className="relative min-h-screen text-white overflow-hidden">
             <div
                 className="absolute inset-0 bg-cover bg-top"
-                style={{ backgroundImage: "url(/src/assets/slider-font.webp)" }}
+                style={{
+                    backgroundImage: "url(/images/slider-font.webp)",
+                }}
             />
 
             <div

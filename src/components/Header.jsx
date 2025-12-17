@@ -36,8 +36,19 @@ const Header = () => {
         };
 
         document.addEventListener("mousedown", handleClickOutside);
-        return () =>
-            document.removeEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
     }, [isOpen]);
 
     return (
@@ -103,14 +114,17 @@ const Header = () => {
                 </button>
             </div>
 
+            {/* Overlay */}
             {isOpen && (
-                <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[110]" />
+                <div className="fixed inset-0 h-[100dvh] bg-black/40 backdrop-blur-sm z-[110]" />
             )}
 
+            {/* Panel móvil */}
             <div
                 ref={panelRef}
                 className={`
-                    fixed top-0 right-0 h-full w-[75%]
+                    fixed top-0 right-0
+                    h-[100dvh] w-[75%]
                     bg-black/80 backdrop-blur-xl
                     z-[120]
                     p-10 pt-14
