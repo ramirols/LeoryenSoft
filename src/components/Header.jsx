@@ -116,7 +116,7 @@ const Header = () => {
 
             {/* Overlay */}
             {isOpen && (
-                <div className="fixed inset-0 h-[100dvh] bg-black/40 backdrop-blur-sm z-[110]" />
+                <div className="fixed inset-0 h-[100dvh] bg-black/30 backdrop-blur-xl z-[110]" />
             )}
 
             {/* Panel móvil */}

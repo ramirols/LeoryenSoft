@@ -127,7 +127,7 @@ export default function Slider() {
 
 function SlideContent({ isActive, title, subtitle }) {
     return (
-        <div className="min-h-[100vh] flex items-center justify-center text-center px-6">
+        <div className="min-h-[100dvh] flex items-center justify-center text-center px-6">
             <motion.div
                 variants={fadeUp}
                 initial="hidden"
