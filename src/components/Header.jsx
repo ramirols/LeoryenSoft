@@ -57,16 +57,16 @@ const Header = () => {
                 fixed top-0 left-0 w-full z-[100]
                 transition-all duration-500
                 ${scrolled
-                    ? "bg-black/50 backdrop-blur-xl shadow-xl"
+                    ? "bg-black/60 backdrop-blur-xs"
                     : "bg-transparent"}
             `}
         >
-            <div className="container mx-auto px-6 py-5 flex items-center">
+            <div className="container mx-auto px-6 py-3 flex items-center">
                 <a
                     href="/"
                     className="text-3xl font-black tracking-wider flex-shrink-0"
                 >
-                    <span className="text-secondary">Leosh</span>
+                    <span className="text-secondary">Leoryen</span>
                     <span className="text-white">Soft</span>
                 </a>
 

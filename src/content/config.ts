@@ -5,7 +5,7 @@ const blogCollection = defineCollection({
         title: z.string(),
         description: z.string(),
         date: z.string().transform((val) => new Date(val)),
-        author: z.string().default("Ramiro Leonardo"),
+        author: z.string().default("LeoryenSoft"),
         cover: z.string().optional(),
         category: z.string().optional(),
     }),
@@ -15,10 +15,11 @@ const portafolioCollection = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        result: z.string(),
         date: z.string().transform((val) => new Date(val)),
-        author: z.string().default("Ramiro Leonardo"),
-        cover: z.string().optional(),
-        category: z.string().optional(),
+        cover: z.string(),
+        url: z.string().optional(),
+        featured: z.boolean().default(false),
     }),
 });
 

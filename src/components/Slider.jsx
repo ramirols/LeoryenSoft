@@ -114,7 +114,7 @@ export default function Slider() {
                                 SEO + Velocidad
                                 <br />
                                 fórmula{" "}
-                                <span className="text-accent">LeoshSoft</span>
+                                <span className="text-accent">LeoryenSoft</span>
                             </>
                         }
                         subtitle="Posicionamiento técnico y rendimiento extremo para destacar en Google."
