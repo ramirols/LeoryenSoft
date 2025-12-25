@@ -138,24 +138,11 @@ function SlideContent({ isActive, title, subtitle }) {
                     Agencia digital · 2025
                 </span>
 
-                <h1
-                    className="
-                        text-5xl
-                        sm:text-6xl
-                        md:text-[5.5rem]
-                        lg:text-[6.5rem]
-                        xl:text-[7.5rem]
-                        leading-[0.95]
-                        font-bold
-                        tracking-tight
-                        mb-8
-                        bg-gradient-to-br
-                        from-white via-white to-white/50
-                        text-transparent bg-clip-text
-                    "
+                <h2
+                    className="text-5xl sm:text-6xl md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] leading-[0.95] font-bold tracking-tight mb-8 bg-gradient-to-br from-white via-white to-white/50 text-transparent bg-clip-text"
                 >
                     {title}
-                </h1>
+                </h2>
 
                 <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-white/75 mb-12">
                     {subtitle}
