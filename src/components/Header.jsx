@@ -57,14 +57,14 @@ const Header = () => {
             className={`
         fixed top-0 left-0 w-full z-[100]
         transition-all duration-500 ease-out
-        h-[80px]
+        h-[65px]
         ${scrolled
                     ? "bg-black/60 backdrop-blur-xl shadow-lg"
                     : "bg-transparent"
                 }
       `}
         >
-            <div className="max-w-6xl mx-auto px-6 py-3 flex items-center">
+            <div className="max-w-6xl mx-auto px-6 flex items-center h-full">
                 {/* Logo */}
                 <a
                     href="/#inicio"

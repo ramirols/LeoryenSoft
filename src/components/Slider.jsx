@@ -72,7 +72,7 @@ export default function Slider() {
                 onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                 className="relative z-10 min-h-screen"
             >
-                <SwiperSlide>
+                <SwiperSlide className="cursor-pointer">
                     <SlideContent
                         isActive={activeIndex === 0}
                         title={
@@ -87,7 +87,7 @@ export default function Slider() {
                     />
                 </SwiperSlide>
 
-                <SwiperSlide>
+                <SwiperSlide className="cursor-pointer">
                     <SlideContent
                         isActive={activeIndex === 1}
                         title={
@@ -102,7 +102,7 @@ export default function Slider() {
                     />
                 </SwiperSlide>
 
-                <SwiperSlide>
+                <SwiperSlide className="cursor-pointer">
                     <SlideContent
                         isActive={activeIndex === 2}
                         title={
@@ -146,7 +146,7 @@ function SlideContent({ isActive, title, subtitle }) {
 
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                        href="/contacto"
+                        href="#contacto"
                         className="
                             py-3 px-8
                             bg-accent text-primary
@@ -163,7 +163,7 @@ function SlideContent({ isActive, title, subtitle }) {
                     </a>
 
                     <a
-                        href="/portafolio"
+                        href="/proyectos"
                         className="
                             py-3 px-8
                             border-2 border-secondary
