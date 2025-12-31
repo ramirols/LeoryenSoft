@@ -115,7 +115,7 @@ const Header = ({ lang = "es" }) => {
             <div className="max-w-6xl mx-auto px-6 flex items-center h-full">
                 {/* Logo */}
                 <a
-                    href={`/${lang}`}
+                    href={`/${lang}#inicio`}
                     className="text-3xl font-black tracking-wider flex-shrink-0"
                 >
                     <span className="text-secondary">Leoryen</span>

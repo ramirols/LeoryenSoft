@@ -13,43 +13,53 @@ const i18n: Record<Lang, any> = {
         faqs: [
             {
                 q: "¿En cuánto tiempo entregan un proyecto web?",
-                a: "El tiempo de entrega depende del alcance del proyecto. Las landing pages o sitios simples suelen entregarse entre 3 y 7 días. Proyectos más complejos como webs corporativas, e-commerce o software a medida pueden tomar entre 2 y 4 semanas.",
+                a: "El tiempo de entrega depende del alcance del proyecto. Las landing pages o sitios simples suelen entregarse entre 3 y 7 días.",
+                str: "Proyectos más complejos como webs corporativas, e-commerce o software a medida pueden tomar entre 2 y 4 semanas."
             },
             {
                 q: "¿Ofrecen mantenimiento después de la entrega?",
-                a: "Sí. Ofrecemos planes de mantenimiento web que incluyen soporte técnico, actualizaciones, seguridad y mejoras de rendimiento.",
+                a: "Sí. Ofrecemos",
+                str: "planes de mantenimiento web que incluyen soporte técnico, actualizaciones, seguridad y mejoras de rendimiento."
             },
             {
                 q: "¿Puedo solicitar cambios después del diseño inicial?",
-                a: "Claro. Todos nuestros proyectos incluyen revisiones para asegurar que el resultado final represente correctamente tu marca.",
+                a: "Claro. Todos nuestros proyectos incluyen ",
+                str: "revisiones para asegurar que el resultado final represente correctamente tu marca."
             },
             {
                 q: "¿Trabajan con SEO y optimización de velocidad?",
-                a: "Sí. Todos nuestros desarrollos incluyen SEO técnico, optimización de velocidad y buenas prácticas para Google.",
+                a: "Sí. Todos nuestros desarrollos incluyen ",
+                str: "SEO técnico, optimización de velocidad y buenas prácticas para Google."
             },
             {
                 q: "¿Desarrollan tiendas online o e-commerce?",
-                a: "Sí. Creamos tiendas online optimizadas para conversión con carrito y pasarelas de pago.",
+                a: "Sí. Creamos ",
+                str: "tiendas online optimizadas para conversión con carrito y pasarelas de pago."
             },
             {
                 q: "¿Trabajan con empresas y emprendedores?",
-                a: "Sí. Trabajamos con emprendedores, startups y empresas que buscan crecer digitalmente.",
+                a: "Sí. Trabajamos con ",
+                str: "emprendedores, startups y empresas que buscan crecer digitalmente."
             },
             {
                 q: "¿Qué tecnologías utilizan?",
-                a: "Utilizamos Astro, React, Tailwind, Node.js y bases de datos seguras.",
+                a: "Utilizamos ",
+                str: "Astro, React, Tailwind, Node.js y bases de datos seguras."
             },
             {
                 q: "¿El sitio será responsive?",
-                a: "Sí. Todos nuestros proyectos son 100% responsive.",
+                a: "Sí. ",
+                str: "Todos nuestros proyectos son 100% responsive."
             },
             {
                 q: "¿Puedo escalar mi proyecto en el futuro?",
-                a: "Sí. Diseñamos soluciones escalables que crecen con tu negocio.",
+                a: "Sí. ",
+                str: "Diseñamos soluciones escalables que crecen con tu negocio."
             },
             {
                 q: "¿Cómo puedo solicitar una cotización?",
-                a: "Puedes contactarnos por el formulario o WhatsApp para una cotización personalizada.",
+                a: "Puedes contactarnos por el ",
+                str: "formulario o WhatsApp para una cotización personalizada."
             },
         ],
     },
@@ -60,43 +70,53 @@ const i18n: Record<Lang, any> = {
         faqs: [
             {
                 q: "How long does a web project take?",
-                a: "Delivery time depends on the project scope. Landing pages usually take 3 to 7 days. More complex projects may take 2 to 4 weeks.",
+                a: "Delivery time depends on the project scope. ",
+                str: "Landing pages usually take 3 to 7 days. More complex projects may take 2 to 4 weeks."
             },
             {
                 q: "Do you offer maintenance after delivery?",
-                a: "Yes. We offer web maintenance plans including support, updates, security, and performance improvements.",
+                a: "Yes. We offer web maintenance plans including ",
+                str: "support, updates, security, and performance improvements."
             },
             {
                 q: "Can I request changes after the initial design?",
-                a: "Of course. All projects include revisions to ensure the final result matches your brand.",
+                a: "Of course. ",
+                str: "All projects include revisions to ensure the final result matches your brand."
             },
             {
                 q: "Do you handle SEO and speed optimization?",
-                a: "Yes. All projects include technical SEO and performance optimization.",
+                a: "Yes. ",
+                str: "All projects include technical SEO and performance optimization."
             },
             {
                 q: "Do you build e-commerce websites?",
-                a: "Yes. We create conversion-optimized online stores with carts and payment gateways.",
+                a: "Yes. ",
+                str: "We create conversion-optimized online stores with carts and payment gateways."
             },
             {
                 q: "Do you work with companies and startups?",
-                a: "Yes. We work with entrepreneurs, startups, and companies aiming to grow digitally.",
+                a: "Yes. ",
+                str: "We work with entrepreneurs, startups, and companies aiming to grow digitally."
             },
             {
                 q: "What technologies do you use?",
-                a: "We use modern technologies like Astro, React, Tailwind, Node.js, and secure databases.",
+                a: "We use modern technologies like ",
+                str: "Astro, React, Tailwind, Node.js, and secure databases."
             },
             {
                 q: "Will my website be responsive?",
-                a: "Yes. All our projects are fully responsive.",
+                a: "Yes. ",
+                str: "All our projects are fully responsive."
             },
             {
                 q: "Can my project scale in the future?",
-                a: "Yes. We design scalable solutions that grow with your business.",
+                a: "Yes. ",
+                str: "We design scalable solutions that grow with your business."
             },
             {
                 q: "How can I request a quote?",
-                a: "Contact us via the form or WhatsApp for a personalized quote.",
+                a: "Contact us via the ",
+                str: "form or WhatsApp for a personalized quote."
             },
         ],
     },
@@ -133,14 +153,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[0].a}
-                        <strong>{t.faqs[0].a}</strong> o sitios simples suelen entregarse
-                        entre
-                        <strong>{t.faqs[0].a}</strong>. Proyectos más complejos
-                        como
-                        <strong
-                            >{t.faqs[0].a}</strong
-                        >
-                        pueden tomar entre <strong>{t.faqs[0].a}</strong>.
+                        <strong>{t.faqs[0].str}</strong>
                     </div>
                 </div>
             </details>
@@ -161,10 +174,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[1].a}
-                        <strong>{t.faqs[1].a}</strong> que incluyen soporte técnico, actualizaciones, seguridad
-                        y mejoras de rendimiento. También contamos con <strong
-                            >soporte por horas</strong
-                        >.
+                        <strong>{t.faqs[1].str}</strong>
                     </div>
                 </div>
             </details>
@@ -185,9 +195,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[2].a}
-                        <strong>{t.faqs[2].a}</strong> para asegurar que el resultado final represente correctamente
-                        tu marca. Cambios adicionales pueden gestionarse de forma
-                        flexible.
+                        <strong>{t.faqs[2].str}</strong>
                     </div>
                 </div>
             </details>
@@ -208,9 +216,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[3].a}
-                        <strong>{t.faqs[3].a}</strong>, optimización de velocidad, estructura semántica y
-                        buenas prácticas para mejorar el posicionamiento en
-                        Google.
+                        <strong>{t.faqs[3].str}</strong>
                     </div>
                 </div>
             </details>
@@ -231,9 +237,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[4].a}
-                        <strong>{t.faqs[4].a}</strong> optimizadas para
-                        conversión, con carrito de compras, pasarelas de pago y gestión
-                        de productos.
+                        <strong>{t.faqs[4].str}</strong>
                     </div>
                 </div>
             </details>
@@ -254,7 +258,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[5].a}
-                        <strong>{t.faqs[5].a}</strong> que buscan crecer digitalmente mediante soluciones modernas.
+                        <strong>{t.faqs[5].str}</strong>
                     </div>
                 </div>
             </details>
@@ -275,10 +279,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[6].a}
-                        <strong>{t.faqs[6].a}</strong> Utilizamos tecnologías modernas como <strong
-                            >Astro, React, Tailwind, Node.js y bases de datos
-                            seguras</strong
-                        >, enfocándonos en rendimiento y escalabilidad.
+                        <strong>{t.faqs[6].str}</strong>
                     </div>
                 </div>
             </details>
@@ -299,9 +300,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[7].a}
-                        <strong>{t.faqs[7].a}</strong> Sí. Todos nuestros proyectos son <strong
-                            >100% responsive</strong
-                        >, optimizados para móviles, tablets y escritorio.
+                        <strong>{t.faqs[7].str}</strong>
                     </div>
                 </div>
             </details>
@@ -322,8 +321,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[8].a}
-                        <strong>{t.faqs[8].a}</strong> Sí. Diseñamos soluciones <strong>escalables</strong> que permiten
-                        agregar nuevas funcionalidades conforme tu negocio crece.
+                        <strong>{t.faqs[8].str}</strong>
                     </div>
                 </div>
             </details>
@@ -344,7 +342,7 @@ const t = i18n[lang];
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
                         {t.faqs[9].a}
-                        <strong>{t.faqs[9].a}</strong> {t.faqs[9].a}
+                        <strong>{t.faqs[9].str}</strong>
                     </div>
                 </div>
             </details>

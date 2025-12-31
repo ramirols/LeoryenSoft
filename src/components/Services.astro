@@ -114,12 +114,12 @@ const t = {
         <div class="grid gap-10 md:grid-cols-3">
             {/* PLAN STARTER */}
             <article
-                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition"
+                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition flex flex-col justify-between"
             >
                 <Laptop class="w-12 h-12 text-blue-600 mb-6" />
 
                 <span
-                    class="inline-block mb-4 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full"
+                    class="inline-block mb-4 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full self-start"
                 >
                     {t.badges.starter}
                 </span>
@@ -161,10 +161,10 @@ const t = {
 
             {/* PLAN POPULAR */}
             <article
-                class="group relative rounded-2xl p-8 border-2 border-blue-600 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition"
+                class="group relative rounded-2xl p-8 border-2 border-blue-600 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition flex flex-col justify-between"
             >
                 <span
-                    class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 text-sm rounded-full"
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 text-sm rounded-full self-start"
                 >
                     {t.badges.popular}
                 </span>
@@ -208,12 +208,12 @@ const t = {
 
             {/* PLAN PREMIUM */}
             <article
-                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition"
+                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition flex flex-col justify-between"
             >
                 <Boxes class="w-12 h-12 text-blue-600 mb-6" />
 
                 <span
-                    class="inline-block mb-4 text-sm bg-green-50 text-green-600 px-3 py-1 rounded-full"
+                    class="inline-block mb-4 text-sm bg-green-50 text-green-600 px-3 py-1 rounded-full self-start"
                 >
                     {t.badges.business}
                 </span>
