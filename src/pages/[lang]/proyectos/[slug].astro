@@ -5,21 +5,34 @@ import { ArrowUpRight } from "lucide-astro";
 
 export async function getStaticPaths() {
     const projects = await getCollection("proyectos");
-    return projects.map((project) => ({
-        params: { slug: project.id },
-        props: { project },
-    }));
+    const langs = ["es", "en"];
+
+    return projects.flatMap((project) =>
+        langs.map((lang) => ({
+            params: {
+                lang,
+                slug: project.id,
+            },
+            props: {
+                project,
+                lang,
+            },
+        })),
+    );
 }
 
-const { project } = Astro.props;
+const { project, lang } = Astro.props;
 const { Content } = await project.render();
 ---
 
 <BaseLayout
-    title={`${project.data.title} | Proyectos`}
-    description={project.data.description}
-    image={project.data.cover}
-    type="article"
+  lang={lang}
+  title={`${project.data.title} | ${
+    lang === "es" ? "Proyectos" : "Projects"
+  }`}
+  description={project.data.description}
+  image={project.data.cover}
+  type="article"
 >
     <article class="max-w-4xl mx-auto mt-[130px] px-6">
         <!-- Imagen -->

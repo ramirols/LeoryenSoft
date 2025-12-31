@@ -10,21 +10,89 @@ import {
     ShieldCheck,
 } from "lucide-astro";
 
-interface Props {
-    servicios: {
-        nombre: string;
-        descripcion: string;
-        imagen: string;
-    }[];
+interface Servicio {
+    nombre: string;
+    descripcion: string;
+    imagen: string;
 }
 
-const {
-    servicios = [
-        { nombre: "Landing Page", descripcion: "", imagen: "" },
-        { nombre: "Web Corporativa", descripcion: "", imagen: "" },
-        { nombre: "Software a Medida", descripcion: "", imagen: "" },
-    ],
-} = Astro.props;
+interface Props {
+    lang?: "es" | "en";
+    servicios: Servicio[];
+}
+
+const { lang = "es", servicios = [] } = Astro.props;
+
+/* =============================
+   I18N TEXTS
+============================= */
+const t = {
+    es: {
+        sectionTitle: "Planes y precios de nuestros servicios",
+        sectionDesc:
+            "Estos son nuestros servicios más contratados. Todos incluyen optimización SEO, alto rendimiento y soporte profesional.",
+
+        badges: {
+            starter: "Ideal para emprendedores",
+            popular: "Más vendido",
+            business: "Empresas",
+        },
+
+        prices: {
+            starter: "$199 USD",
+            popular: "$499 USD",
+            premium: "Desde $999",
+        },
+
+        features: {
+            responsive: "Diseño moderno y responsive",
+            seoBasic: "SEO básico optimizado",
+            seoAdvanced: "SEO avanzado",
+            speed: "Velocidad optimizada",
+            contact: "Formulario de contacto",
+            custom: "Desarrollo personalizado",
+            automation: "Automatizaciones",
+            scale: "Escalabilidad",
+            support: "Soporte prioritario",
+        },
+
+        ctaStart: "Comenzar ahora",
+        ctaAll: "Ver todos los servicios",
+    },
+
+    en: {
+        sectionTitle: "Service plans & pricing",
+        sectionDesc:
+            "These are our most popular services. All include SEO optimization, high performance and professional support.",
+
+        badges: {
+            starter: "Perfect for startups",
+            popular: "Best seller",
+            business: "Businesses",
+        },
+
+        prices: {
+            starter: "$199 USD",
+            popular: "$499 USD",
+            premium: "From $999",
+        },
+
+        features: {
+            responsive: "Modern & responsive design",
+            seoBasic: "Basic SEO optimization",
+            seoAdvanced: "Advanced SEO",
+            speed: "Optimized performance",
+            contact: "Contact form",
+            custom: "Custom development",
+            automation: "Automations",
+            scale: "Scalability",
+            support: "Priority support",
+        },
+
+        ctaStart: "Get started",
+        ctaAll: "View all services",
+    },
+}[lang];
 ---
 
 <section
@@ -35,156 +103,153 @@ const {
     <div class="max-w-6xl mx-auto px-6">
         <header class="text-center mb-20">
             <h2 id="planes-title" class="text-4xl font-extrabold text-gray-900">
-                Planes y precios de nuestros servicios
+                {t.sectionTitle}
             </h2>
 
             <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                Estos son nuestros servicios más contratados. Todos incluyen
-                optimización SEO, alto rendimiento y soporte profesional.
+                {t.sectionDesc}
             </p>
         </header>
 
         <div class="grid gap-10 md:grid-cols-3">
-            <!-- PLAN BÁSICO -->
+            {/* PLAN STARTER */}
             <article
-                class="group rounded-2xl p-8 border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition"
             >
-                <Laptop
-                    class="w-12 h-12 text-blue-600 mb-6 group-hover:scale-110 group-hover:rotate-3 transition"
-                />
+                <Laptop class="w-12 h-12 text-blue-600 mb-6" />
 
                 <span
                     class="inline-block mb-4 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full"
                 >
-                    Ideal para emprendedores
+                    {t.badges.starter}
                 </span>
 
                 <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    {servicios[0].nombre}
+                    {servicios[0]?.nombre}
                 </h3>
 
                 <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    $199 <span class="text-base font-normal text-gray-500"
-                        >USD</span
-                    >
+                    {t.prices.starter}
                 </p>
 
                 <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex items-center gap-2">
-                        <Check class="w-5 h-5 text-green-500" /> Diseño moderno y
-                        responsive
+                    <li class="flex gap-2">
+                        <Check class="w-5 h-5 text-green-500" />
+                        {t.features.responsive}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Zap class="w-5 h-5 text-green-500" /> SEO básico optimizado
+                    <li class="flex gap-2">
+                        <Zap class="w-5 h-5 text-green-500" />
+                        {t.features.seoBasic}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" /> Velocidad optimizada
+                    <li class="flex gap-2">
+                        <Rocket class="w-5 h-5 text-green-500" />
+                        {t.features.speed}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <MessageCircle class="w-5 h-5 text-green-500" /> Formulario
-                        de contacto
+                    <li class="flex gap-2">
+                        <MessageCircle class="w-5 h-5 text-green-500" />
+                        {t.features.contact}
                     </li>
                 </ul>
 
                 <a
-                    href="#contacto"
+                    href={`/${lang}#contacto`}
                     class="block text-center rounded-xl py-3 font-semibold bg-blue-600 text-white hover:bg-blue-700 transition"
                 >
-                    Comenzar ahora
+                    {t.ctaStart}
                 </a>
             </article>
 
-            <!-- PLAN POPULAR -->
+            {/* PLAN POPULAR */}
             <article
-                class="group relative rounded-2xl p-8 border-2 border-blue-600 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-300"
+                class="group relative rounded-2xl p-8 border-2 border-blue-600 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition"
             >
                 <span
                     class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 text-sm rounded-full"
                 >
-                    Más vendido
+                    {t.badges.popular}
                 </span>
 
-                <Code
-                    class="w-12 h-12 text-blue-600 mb-6 group-hover:scale-110 group-hover:rotate-3 transition"
-                />
+                <Code class="w-12 h-12 text-blue-600 mb-6" />
 
                 <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    Web Corporativa
+                    {servicios[1]?.nombre}
                 </h3>
 
                 <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    $499 <span class="text-base font-normal text-gray-500"
-                        >USD</span
-                    >
+                    {t.prices.popular}
                 </p>
 
                 <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex items-center gap-2">
-                        <Check class="w-5 h-5 text-green-500" /> Diseño moderno y
-                        responsive
+                    <li class="flex gap-2">
+                        <Check class="w-5 h-5 text-green-500" />
+                        {t.features.responsive}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Zap class="w-5 h-5 text-green-500" /> SEO avanzado
+                    <li class="flex gap-2">
+                        <Zap class="w-5 h-5 text-green-500" />
+                        {t.features.seoAdvanced}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" /> Velocidad optimizada
+                    <li class="flex gap-2">
+                        <Rocket class="w-5 h-5 text-green-500" />
+                        {t.features.speed}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <MessageCircle class="w-5 h-5 text-green-500" /> Formulario
-                        de contacto
+                    <li class="flex gap-2">
+                        <MessageCircle class="w-5 h-5 text-green-500" />
+                        {t.features.contact}
                     </li>
                 </ul>
 
                 <a
-                    href="#contacto"
+                    href={`/${lang}#contacto`}
                     class="block text-center rounded-xl py-3 font-semibold bg-blue-600 text-white hover:bg-blue-700 transition"
                 >
-                    Comenzar ahora
+                    {t.ctaStart}
                 </a>
             </article>
 
-            <!-- PLAN PREMIUM -->
+            {/* PLAN PREMIUM */}
             <article
-                class="group rounded-2xl p-8 border border-gray-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition"
             >
-                <Boxes
-                    class="w-12 h-12 text-blue-600 mb-6 group-hover:scale-110 group-hover:rotate-3 transition"
-                />
+                <Boxes class="w-12 h-12 text-blue-600 mb-6" />
 
                 <span
                     class="inline-block mb-4 text-sm bg-green-50 text-green-600 px-3 py-1 rounded-full"
                 >
-                    Empresas
+                    {t.badges.business}
                 </span>
 
                 <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    Software a Medida
+                    {servicios[2]?.nombre}
                 </h3>
 
                 <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    Desde $999
+                    {t.prices.premium}
                 </p>
 
                 <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex items-center gap-2">
-                        <Code class="w-5 h-5 text-green-500" /> Desarrollo personalizado
+                    <li class="flex gap-2">
+                        <Code class="w-5 h-5 text-green-500" />
+                        {t.features.custom}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Zap class="w-5 h-5 text-green-500" /> Automatizaciones
+                    <li class="flex gap-2">
+                        <Zap class="w-5 h-5 text-green-500" />
+                        {t.features.automation}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" /> Escalabilidad
+                    <li class="flex gap-2">
+                        <Rocket class="w-5 h-5 text-green-500" />
+                        {t.features.scale}
                     </li>
-                    <li class="flex items-center gap-2">
-                        <ShieldCheck class="w-5 h-5 text-green-500" /> Soporte prioritario
+                    <li class="flex gap-2">
+                        <ShieldCheck class="w-5 h-5 text-green-500" />
+                        {t.features.support}
                     </li>
                 </ul>
 
                 <a
-                    href="/servicios"
+                    href={`/${lang}/servicios`}
                     class="block text-center rounded-xl py-3 font-semibold bg-gray-900 text-white hover:bg-gray-800 transition"
                 >
-                    Ver todos los servicios
+                    {t.ctaAll}
                 </a>
             </article>
         </div>

@@ -1,17 +1,118 @@
 ---
 import { ChevronDown } from "lucide-astro";
+
+type Lang = "es" | "en";
+
+const { lang = "es" } = Astro.props as { lang?: Lang };
+
+const i18n: Record<Lang, any> = {
+    es: {
+        title: "Preguntas frecuentes sobre desarrollo web y software",
+        subtitle:
+            "Respondemos las dudas más comunes sobre nuestros servicios de desarrollo web, software a medida, SEO, mantenimiento y procesos de trabajo.",
+        faqs: [
+            {
+                q: "¿En cuánto tiempo entregan un proyecto web?",
+                a: "El tiempo de entrega depende del alcance del proyecto. Las landing pages o sitios simples suelen entregarse entre 3 y 7 días. Proyectos más complejos como webs corporativas, e-commerce o software a medida pueden tomar entre 2 y 4 semanas.",
+            },
+            {
+                q: "¿Ofrecen mantenimiento después de la entrega?",
+                a: "Sí. Ofrecemos planes de mantenimiento web que incluyen soporte técnico, actualizaciones, seguridad y mejoras de rendimiento.",
+            },
+            {
+                q: "¿Puedo solicitar cambios después del diseño inicial?",
+                a: "Claro. Todos nuestros proyectos incluyen revisiones para asegurar que el resultado final represente correctamente tu marca.",
+            },
+            {
+                q: "¿Trabajan con SEO y optimización de velocidad?",
+                a: "Sí. Todos nuestros desarrollos incluyen SEO técnico, optimización de velocidad y buenas prácticas para Google.",
+            },
+            {
+                q: "¿Desarrollan tiendas online o e-commerce?",
+                a: "Sí. Creamos tiendas online optimizadas para conversión con carrito y pasarelas de pago.",
+            },
+            {
+                q: "¿Trabajan con empresas y emprendedores?",
+                a: "Sí. Trabajamos con emprendedores, startups y empresas que buscan crecer digitalmente.",
+            },
+            {
+                q: "¿Qué tecnologías utilizan?",
+                a: "Utilizamos Astro, React, Tailwind, Node.js y bases de datos seguras.",
+            },
+            {
+                q: "¿El sitio será responsive?",
+                a: "Sí. Todos nuestros proyectos son 100% responsive.",
+            },
+            {
+                q: "¿Puedo escalar mi proyecto en el futuro?",
+                a: "Sí. Diseñamos soluciones escalables que crecen con tu negocio.",
+            },
+            {
+                q: "¿Cómo puedo solicitar una cotización?",
+                a: "Puedes contactarnos por el formulario o WhatsApp para una cotización personalizada.",
+            },
+        ],
+    },
+    en: {
+        title: "Frequently Asked Questions about Web & Software Development",
+        subtitle:
+            "We answer the most common questions about our web development, custom software, SEO, maintenance, and workflow.",
+        faqs: [
+            {
+                q: "How long does a web project take?",
+                a: "Delivery time depends on the project scope. Landing pages usually take 3 to 7 days. More complex projects may take 2 to 4 weeks.",
+            },
+            {
+                q: "Do you offer maintenance after delivery?",
+                a: "Yes. We offer web maintenance plans including support, updates, security, and performance improvements.",
+            },
+            {
+                q: "Can I request changes after the initial design?",
+                a: "Of course. All projects include revisions to ensure the final result matches your brand.",
+            },
+            {
+                q: "Do you handle SEO and speed optimization?",
+                a: "Yes. All projects include technical SEO and performance optimization.",
+            },
+            {
+                q: "Do you build e-commerce websites?",
+                a: "Yes. We create conversion-optimized online stores with carts and payment gateways.",
+            },
+            {
+                q: "Do you work with companies and startups?",
+                a: "Yes. We work with entrepreneurs, startups, and companies aiming to grow digitally.",
+            },
+            {
+                q: "What technologies do you use?",
+                a: "We use modern technologies like Astro, React, Tailwind, Node.js, and secure databases.",
+            },
+            {
+                q: "Will my website be responsive?",
+                a: "Yes. All our projects are fully responsive.",
+            },
+            {
+                q: "Can my project scale in the future?",
+                a: "Yes. We design scalable solutions that grow with your business.",
+            },
+            {
+                q: "How can I request a quote?",
+                a: "Contact us via the form or WhatsApp for a personalized quote.",
+            },
+        ],
+    },
+};
+
+const t = i18n[lang];
 ---
 
 <section id="faq" class="py-24 bg-gray-50">
     <div class="max-w-5xl mx-auto px-6">
         <header class="text-center mb-14">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                Preguntas frecuentes sobre desarrollo web y software
+                {t.title}
             </h2>
             <p class="text-gray-600 max-w-2xl mx-auto">
-                Respondemos las dudas más comunes sobre nuestros servicios de
-                desarrollo web, software a medida, SEO, mantenimiento y procesos
-                de trabajo.
+                {t.subtitle}
             </p>
         </header>
 
@@ -21,7 +122,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿En cuánto tiempo entregan un proyecto web?
+                    {t.faqs[0].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -31,15 +132,15 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        El tiempo de entrega depende del alcance del proyecto.
-                        <strong>Landing pages</strong> o sitios simples suelen entregarse
+                        {t.faqs[0].a}
+                        <strong>{t.faqs[0].a}</strong> o sitios simples suelen entregarse
                         entre
-                        <strong>3 y 7 días</strong>. Proyectos más complejos
+                        <strong>{t.faqs[0].a}</strong>. Proyectos más complejos
                         como
                         <strong
-                            >webs corporativas, e-commerce o software a medida</strong
+                            >{t.faqs[0].a}</strong
                         >
-                        pueden tomar entre <strong>2 y 4 semanas</strong>.
+                        pueden tomar entre <strong>{t.faqs[0].a}</strong>.
                     </div>
                 </div>
             </details>
@@ -49,7 +150,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Ofrecen mantenimiento después de la entrega?
+                    {t.faqs[1].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -59,9 +160,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Ofrecemos <strong
-                            >planes de mantenimiento web</strong
-                        > que incluyen soporte técnico, actualizaciones, seguridad
+                        {t.faqs[1].a}
+                        <strong>{t.faqs[1].a}</strong> que incluyen soporte técnico, actualizaciones, seguridad
                         y mejoras de rendimiento. También contamos con <strong
                             >soporte por horas</strong
                         >.
@@ -74,7 +174,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Puedo solicitar cambios después del diseño inicial?
+                    {t.faqs[2].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -84,10 +184,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Claro. Todos nuestros proyectos incluyen <strong
-                            >revisiones</strong
-                        >
-                        para asegurar que el resultado final represente correctamente
+                        {t.faqs[2].a}
+                        <strong>{t.faqs[2].a}</strong> para asegurar que el resultado final represente correctamente
                         tu marca. Cambios adicionales pueden gestionarse de forma
                         flexible.
                     </div>
@@ -99,7 +197,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Trabajan con SEO y optimización de velocidad?
+                    {t.faqs[3].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -109,9 +207,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Todos nuestros desarrollos incluyen <strong
-                            >SEO técnico</strong
-                        >, optimización de velocidad, estructura semántica y
+                        {t.faqs[3].a}
+                        <strong>{t.faqs[3].a}</strong>, optimización de velocidad, estructura semántica y
                         buenas prácticas para mejorar el posicionamiento en
                         Google.
                     </div>
@@ -123,7 +220,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Desarrollan tiendas online o e-commerce?
+                    {t.faqs[4].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -133,7 +230,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Creamos <strong>tiendas online</strong> optimizadas para
+                        {t.faqs[4].a}
+                        <strong>{t.faqs[4].a}</strong> optimizadas para
                         conversión, con carrito de compras, pasarelas de pago y gestión
                         de productos.
                     </div>
@@ -145,7 +243,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Trabajan con empresas y emprendedores?
+                    {t.faqs[5].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -155,10 +253,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Trabajamos con <strong
-                            >emprendedores, startups y empresas</strong
-                        >
-                        que buscan crecer digitalmente mediante soluciones modernas.
+                        {t.faqs[5].a}
+                        <strong>{t.faqs[5].a}</strong> que buscan crecer digitalmente mediante soluciones modernas.
                     </div>
                 </div>
             </details>
@@ -168,7 +264,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Qué tecnologías utilizan?
+                    {t.faqs[6].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -178,7 +274,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Utilizamos tecnologías modernas como <strong
+                        {t.faqs[6].a}
+                        <strong>{t.faqs[6].a}</strong> Utilizamos tecnologías modernas como <strong
                             >Astro, React, Tailwind, Node.js y bases de datos
                             seguras</strong
                         >, enfocándonos en rendimiento y escalabilidad.
@@ -191,7 +288,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿El sitio será responsive?
+                    {t.faqs[7].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -201,7 +298,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Todos nuestros proyectos son <strong
+                        {t.faqs[7].a}
+                        <strong>{t.faqs[7].a}</strong> Sí. Todos nuestros proyectos son <strong
                             >100% responsive</strong
                         >, optimizados para móviles, tablets y escritorio.
                     </div>
@@ -213,7 +311,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Puedo escalar mi proyecto en el futuro?
+                    {t.faqs[8].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -223,7 +321,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Sí. Diseñamos soluciones <strong>escalables</strong> que permiten
+                        {t.faqs[8].a}
+                        <strong>{t.faqs[8].a}</strong> Sí. Diseñamos soluciones <strong>escalables</strong> que permiten
                         agregar nuevas funcionalidades conforme tu negocio crece.
                     </div>
                 </div>
@@ -234,7 +333,7 @@ import { ChevronDown } from "lucide-astro";
                 <summary
                     class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-semibold text-lg"
                 >
-                    ¿Cómo puedo solicitar una cotización?
+                    {t.faqs[9].q}
                     <ChevronDown
                         class="h-6 w-6 transition-transform duration-300 group-open:rotate-180"
                     />
@@ -244,10 +343,8 @@ import { ChevronDown } from "lucide-astro";
                     <div
                         class="faq-inner px-6 pb-6 text-gray-600 leading-relaxed"
                     >
-                        Puedes contactarnos a través de nuestro formulario o
-                        WhatsApp. Analizaremos tu proyecto y te enviaremos una <strong
-                            >cotización personalizada</strong
-                        >.
+                        {t.faqs[9].a}
+                        <strong>{t.faqs[9].a}</strong> {t.faqs[9].a}
                     </div>
                 </div>
             </details>

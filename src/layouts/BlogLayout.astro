@@ -2,6 +2,8 @@
 import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 
+
+const { lang } = Astro.params;
 const readingTime = Math.ceil(frontmatter.words / 200);
 ---
 
@@ -10,6 +12,7 @@ const readingTime = Math.ceil(frontmatter.words / 200);
   description={frontmatter.description}
   image={frontmatter.cover}
   type="article"
+  lang={lang}
 >
   <!-- Hero -->
   <header class="relative mt-[65px]">

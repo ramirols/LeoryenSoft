@@ -46,11 +46,11 @@ const canonical = Astro.url.href;
         }}
     />
 
-    <Header client:load />
+    <Header client:load lang={lang} />
 
     <main class="min-h-screen bg-white text-gray-900 font-inter">
         <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
 </Layout>

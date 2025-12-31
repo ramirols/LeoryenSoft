@@ -2,6 +2,12 @@
 import { getCollection } from "astro:content";
 import { ArrowUpRight } from "lucide-astro";
 
+const { lang } = Astro.props;
+
+if (!lang) {
+  throw new Error("ProyectosGrid: lang prop is required");
+}
+
 const projects = (await getCollection("proyectos"))
   .filter((p) => p.data.featured)
   .slice(0, 3);
@@ -11,17 +17,24 @@ const projects = (await getCollection("proyectos"))
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="flex items-center justify-between mb-16">
       <div>
-        <h2 class="text-4xl font-extrabold text-primary">Proyectos</h2>
+        <h2 class="text-4xl font-extrabold text-primary">
+          {lang === "es" ? "Proyectos" : "Projects"}
+        </h2>
+
         <p class="text-gray-600 mt-4 text-lg">
-          Algunos de nuestros proyectos más influyentes
+          {
+            lang === "es"
+              ? "Algunos de nuestros proyectos más influyentes"
+              : "Some of our most impactful projects"
+          }
         </p>
       </div>
 
       <a
-        href="/proyectos"
+        href={`/${lang}/proyectos`}
         class="hidden md:inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition"
       >
-        Ver todos
+        {lang === "es" ? "Ver todos" : "View all"}
         <ArrowUpRight class="w-5 h-5" />
       </a>
     </div>
@@ -30,7 +43,7 @@ const projects = (await getCollection("proyectos"))
       {
         projects.map((project) => (
           <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group">
-            <a href={`/proyectos/${project.id}`}>
+            <a href={`/${lang}/proyectos/${project.id}`}>
               <img
                 src={project.data.cover}
                 alt={project.data.title}
@@ -52,10 +65,10 @@ const projects = (await getCollection("proyectos"))
               </p>
 
               <a
-                href={`/proyectos/${project.id}`}
+                href={`/${lang}/proyectos/${project.id}`}
                 class="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition"
               >
-                Ver proyecto
+                {lang === "es" ? "Ver proyecto" : "View project"}
                 <ArrowUpRight class="w-5 h-5" />
               </a>
             </div>

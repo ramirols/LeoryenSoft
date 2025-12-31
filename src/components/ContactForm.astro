@@ -1,18 +1,69 @@
 ---
-const {
-    title = "Contáctanos y hagamos realidad tu proyecto",
-    subtitle = "Cuéntanos sobre tu idea, negocio o necesidad digital. Te responderemos en menos de 24 horas.",
-} = Astro.props;
+type Lang = "es" | "en";
+
+const { lang = "es" } = Astro.props as { lang?: Lang };
+
+const i18n: Record<
+    Lang,
+    {
+        title: string;
+        subtitle: string;
+        nameLabel: string;
+        namePlaceholder: string;
+        emailLabel: string;
+        emailPlaceholder: string;
+        messageLabel: string;
+        messagePlaceholder: string;
+        hint: string;
+        button: string;
+        trust: string;
+        whatsappIntro: string;
+    }
+> = {
+    es: {
+        title: "Contáctanos y hagamos realidad tu proyecto",
+        subtitle:
+            "Cuéntanos sobre tu idea, negocio o necesidad digital. Te responderemos en menos de 24 horas.",
+        nameLabel: "Nombre completo",
+        namePlaceholder: "Ej. Juan Pérez",
+        emailLabel: "Correo electrónico",
+        emailPlaceholder: "correo@empresa.com",
+        messageLabel: "Cuéntanos sobre tu proyecto",
+        messagePlaceholder:
+            "Necesito una página web, sistema, tienda online, etc.",
+        hint: "Mientras más detalles, mejor podré ayudarte 🚀",
+        button: "Enviar mensaje",
+        trust: "🔒 Tu información es confidencial. No spam, solo contacto directo.",
+        whatsappIntro: "Hola 👋, soy",
+    },
+    en: {
+        title: "Contact us and bring your project to life",
+        subtitle:
+            "Tell us about your idea, business, or digital needs. We’ll get back to you within 24 hours.",
+        nameLabel: "Full name",
+        namePlaceholder: "e.g. John Doe",
+        emailLabel: "Email address",
+        emailPlaceholder: "email@company.com",
+        messageLabel: "Tell us about your project",
+        messagePlaceholder: "I need a website, system, online store, etc.",
+        hint: "The more details you share, the better I can help 🚀",
+        button: "Send message",
+        trust: "🔒 Your information is confidential. No spam, just direct contact.",
+        whatsappIntro: "Hi 👋, I’m",
+    },
+};
+
+const t = i18n[lang];
 ---
 
 <section id="contacto" class="relative max-w-3xl mx-auto px-6 py-20">
     <!-- Header -->
     <header class="text-center mb-12 animate-fade-up">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            {title}
+            {t.title}
         </h2>
         <p class="text-gray-600 max-w-xl mx-auto">
-            {subtitle}
+            {t.subtitle}
         </p>
     </header>
 
@@ -24,7 +75,7 @@ const {
         <!-- Nombre -->
         <div>
             <label for="name" class="block text-sm font-medium mb-1">
-                Nombre completo
+                {t.nameLabel}
             </label>
             <input
                 id="name"
@@ -32,30 +83,30 @@ const {
                 type="text"
                 required
                 minlength="3"
-                placeholder="Ej. Juan Pérez"
-                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder={t.namePlaceholder}
+                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
         </div>
 
         <!-- Email -->
         <div>
             <label for="email" class="block text-sm font-medium mb-1">
-                Correo electrónico
+                {t.emailLabel}
             </label>
             <input
                 id="email"
                 name="email"
                 type="email"
                 required
-                placeholder="correo@empresa.com"
-                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder={t.emailPlaceholder}
+                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
         </div>
 
         <!-- Mensaje -->
         <div>
             <label for="message" class="block text-sm font-medium mb-1">
-                Cuéntanos sobre tu proyecto
+                {t.messageLabel}
             </label>
             <textarea
                 id="message"
@@ -63,20 +114,20 @@ const {
                 rows="5"
                 required
                 minlength="10"
-                placeholder="Necesito una página web, sistema, tienda online, etc."
-                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder={t.messagePlaceholder}
+                class="w-full rounded-xl border px-4 py-3 transition focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
             <p class="text-xs text-gray-500 mt-1">
-                Mientras más detalles, mejor podré ayudarte 🚀
+                {t.hint}
             </p>
         </div>
 
         <!-- CTA -->
         <button
             type="submit"
-            class="group relative w-full overflow-hidden rounded-xl bg-secondary py-3 font-semibold text-white transition hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-secondary/80 cursor-pointer"
+            class="group relative w-full overflow-hidden rounded-xl bg-secondary py-3 font-semibold text-white transition hover:bg-secondary/80"
         >
-            <span class="relative z-10">Enviar mensaje</span>
+            <span class="relative z-10">{t.button}</span>
             <span
                 class="absolute inset-0 -translate-x-full bg-secondary/80 transition-transform duration-300 group-hover:translate-x-0"
             ></span>
@@ -84,7 +135,7 @@ const {
 
         <!-- Trust -->
         <p class="text-center text-xs text-gray-500 pt-2">
-            🔒 Tu información es confidencial. No spam, solo contacto directo.
+            {t.trust}
         </p>
     </form>
 </section>
@@ -98,43 +149,23 @@ const {
             e.preventDefault();
 
             const data = new FormData(form);
-
             const name = data.get("name");
             const email = data.get("email");
             const message = data.get("message");
 
             const whatsappMessage = `
-Hola 👋, soy *${name}*
+${`{t.whatsappIntro}`} *${name}*
 
 📧 Email: ${email}
 
-💬 Mensaje:
+💬 Message:
 ${message}
-            `;
+      `;
 
-            const url = `https://wa.me/51997676432?text=${encodeURIComponent(whatsappMessage)}`;
+            const url = `https://wa.me/51997676432?text=${encodeURIComponent(
+                whatsappMessage,
+            )}`;
             window.open(url, "_blank");
         });
     });
 </script>
-
-<style>
-    @keyframes fade-up {
-        from {
-            opacity: 0;
-            transform: translateY(24px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-up {
-        animation: fade-up 0.6s ease forwards;
-    }
-
-    .animation-delay-200 {
-        animation-delay: 0.2s;
-    }
-</style>
