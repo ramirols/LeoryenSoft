@@ -1,49 +1,41 @@
 ---
 import {
-    Code,
     Laptop,
+    Code,
     Boxes,
     Check,
     Zap,
     Rocket,
     MessageCircle,
     ShieldCheck,
+    Phone,
 } from "lucide-astro";
 
-interface Servicio {
-    nombre: string;
-    descripcion: string;
-    imagen: string;
-}
+import ServiceCard from "./ServiceCard.astro";
+import { servicesData } from "../data/services";
 
 interface Props {
     lang?: "es" | "en";
-    servicios: Servicio[];
+    onlyFeatured?: boolean;
 }
 
-const { lang = "es", servicios = [] } = Astro.props;
+const { lang = "es", onlyFeatured = false } = Astro.props;
 
-/* =============================
-   I18N TEXTS
-============================= */
 const t = {
     es: {
         sectionTitle: "Planes y precios de nuestros servicios",
         sectionDesc:
             "Estos son nuestros servicios más contratados. Todos incluyen optimización SEO, alto rendimiento y soporte profesional.",
-
         badges: {
             starter: "Ideal para emprendedores",
             popular: "Más vendido",
             business: "Empresas",
         },
-
         prices: {
             starter: "$199 USD",
             popular: "$499 USD",
             premium: "Desde $999",
         },
-
         features: {
             responsive: "Diseño moderno y responsive",
             seoBasic: "SEO básico optimizado",
@@ -55,28 +47,23 @@ const t = {
             scale: "Escalabilidad",
             support: "Soporte prioritario",
         },
-
         ctaStart: "Comenzar ahora",
         ctaAll: "Ver todos los servicios",
     },
-
     en: {
         sectionTitle: "Service plans & pricing",
         sectionDesc:
             "These are our most popular services. All include SEO optimization, high performance and professional support.",
-
         badges: {
             starter: "Perfect for startups",
             popular: "Best seller",
             business: "Businesses",
         },
-
         prices: {
             starter: "$199 USD",
             popular: "$499 USD",
             premium: "From $999",
         },
-
         features: {
             responsive: "Modern & responsive design",
             seoBasic: "Basic SEO optimization",
@@ -88,170 +75,90 @@ const t = {
             scale: "Scalability",
             support: "Priority support",
         },
-
         ctaStart: "Get started",
         ctaAll: "View all services",
     },
 }[lang];
+
+const plans = servicesData[lang];
 ---
 
-<section
-    id="planes-precios"
-    class="bg-white py-24"
-    aria-labelledby="planes-title"
->
+<section id="planes-precios" class="bg-white py-24">
     <div class="max-w-6xl mx-auto px-6">
         <header class="text-center mb-20">
-            <h2 id="planes-title" class="text-4xl font-extrabold text-gray-900">
+            <h2 class="text-4xl font-extrabold text-gray-900">
                 {t.sectionTitle}
             </h2>
-
             <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
                 {t.sectionDesc}
             </p>
         </header>
 
         <div class="grid gap-10 md:grid-cols-3">
-            {/* PLAN STARTER */}
-            <article
-                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition flex flex-col justify-between"
-            >
-                <Laptop class="w-12 h-12 text-blue-600 mb-6" />
+            <!-- STARTER -->
+            <ServiceCard
+                icon={Laptop}
+                badge={t.badges.starter}
+                title={plans[0].nombre}
+                price={t.prices.starter}
+                features={[
+                    { icon: "check", text: t.features.responsive },
+                    { icon: "zap", text: t.features.seoBasic },
+                    { icon: "rocket", text: t.features.speed },
+                    { icon: "message", text: t.features.contact },
+                ]}
+                ctaText={t.ctaStart}
+                ctaHref={`/${lang}#contacto`}
+            />
 
-                <span
-                    class="inline-block mb-4 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full self-start"
-                >
-                    {t.badges.starter}
-                </span>
+            <!-- POPULAR -->
+            <ServiceCard
+                icon={Code}
+                badge={t.badges.popular}
+                title={plans[1].nombre}
+                price={t.prices.popular}
+                highlight
+                features={[
+                    { icon: "check", text: t.features.responsive },
+                    { icon: "zap", text: t.features.seoAdvanced },
+                    { icon: "rocket", text: t.features.speed },
+                    { icon: "message", text: t.features.contact },
+                ]}
+                ctaText={t.ctaStart}
+                ctaHref={`/${lang}#contacto`}
+            />
 
-                <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    {servicios[0]?.nombre}
-                </h3>
+            <!-- PREMIUM -->
+            <ServiceCard
+                icon={Boxes}
+                badge={t.badges.business}
+                title={plans[2].nombre}
+                price={t.prices.premium}
+                features={[
+                    { icon: "check", text: t.features.custom },
+                    { icon: "zap", text: t.features.automation },
+                    { icon: "rocket", text: t.features.scale },
+                    { icon: "shield", text: t.features.support },
+                ]}
+                ctaText={t.ctaAll}
+                ctaHref={`/${lang}/servicios`}
+            />
 
-                <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    {t.prices.starter}
-                </p>
-
-                <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex gap-2">
-                        <Check class="w-5 h-5 text-green-500" />
-                        {t.features.responsive}
-                    </li>
-                    <li class="flex gap-2">
-                        <Zap class="w-5 h-5 text-green-500" />
-                        {t.features.seoBasic}
-                    </li>
-                    <li class="flex gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" />
-                        {t.features.speed}
-                    </li>
-                    <li class="flex gap-2">
-                        <MessageCircle class="w-5 h-5 text-green-500" />
-                        {t.features.contact}
-                    </li>
-                </ul>
-
-                <a
-                    href={`/${lang}#contacto`}
-                    class="block text-center rounded-xl py-3 font-semibold bg-blue-600 text-white hover:bg-blue-700 transition"
-                >
-                    {t.ctaStart}
-                </a>
-            </article>
-
-            {/* PLAN POPULAR */}
-            <article
-                class="group relative rounded-2xl p-8 border-2 border-blue-600 bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition flex flex-col justify-between"
-            >
-                <span
-                    class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 text-sm rounded-full self-start"
-                >
-                    {t.badges.popular}
-                </span>
-
-                <Code class="w-12 h-12 text-blue-600 mb-6" />
-
-                <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    {servicios[1]?.nombre}
-                </h3>
-
-                <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    {t.prices.popular}
-                </p>
-
-                <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex gap-2">
-                        <Check class="w-5 h-5 text-green-500" />
-                        {t.features.responsive}
-                    </li>
-                    <li class="flex gap-2">
-                        <Zap class="w-5 h-5 text-green-500" />
-                        {t.features.seoAdvanced}
-                    </li>
-                    <li class="flex gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" />
-                        {t.features.speed}
-                    </li>
-                    <li class="flex gap-2">
-                        <MessageCircle class="w-5 h-5 text-green-500" />
-                        {t.features.contact}
-                    </li>
-                </ul>
-
-                <a
-                    href={`/${lang}#contacto`}
-                    class="block text-center rounded-xl py-3 font-semibold bg-blue-600 text-white hover:bg-blue-700 transition"
-                >
-                    {t.ctaStart}
-                </a>
-            </article>
-
-            {/* PLAN PREMIUM */}
-            <article
-                class="group rounded-2xl p-8 border bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition flex flex-col justify-between"
-            >
-                <Boxes class="w-12 h-12 text-blue-600 mb-6" />
-
-                <span
-                    class="inline-block mb-4 text-sm bg-green-50 text-green-600 px-3 py-1 rounded-full self-start"
-                >
-                    {t.badges.business}
-                </span>
-
-                <h3 class="text-2xl font-bold mb-4 text-gray-900">
-                    {servicios[2]?.nombre}
-                </h3>
-
-                <p class="text-4xl font-extrabold mb-6 text-gray-900">
-                    {t.prices.premium}
-                </p>
-
-                <ul class="space-y-3 text-gray-600 mb-8">
-                    <li class="flex gap-2">
-                        <Code class="w-5 h-5 text-green-500" />
-                        {t.features.custom}
-                    </li>
-                    <li class="flex gap-2">
-                        <Zap class="w-5 h-5 text-green-500" />
-                        {t.features.automation}
-                    </li>
-                    <li class="flex gap-2">
-                        <Rocket class="w-5 h-5 text-green-500" />
-                        {t.features.scale}
-                    </li>
-                    <li class="flex gap-2">
-                        <ShieldCheck class="w-5 h-5 text-green-500" />
-                        {t.features.support}
-                    </li>
-                </ul>
-
-                <a
-                    href={`/${lang}/servicios`}
-                    class="block text-center rounded-xl py-3 font-semibold bg-gray-900 text-white hover:bg-gray-800 transition"
-                >
-                    {t.ctaAll}
-                </a>
-            </article>
+            <!-- Aplicaciones móviles -->
+            <ServiceCard
+                icon={Phone}
+                badge={t.badges.business}
+                title={plans[3].nombre}
+                price={t.prices.premium}
+                features={[
+                    { icon: "check", text: t.features.custom },
+                    { icon: "zap", text: t.features.automation },
+                    { icon: "rocket", text: t.features.scale },
+                    { icon: "shield", text: t.features.support },
+                ]}
+                ctaText={t.ctaAll}
+                ctaHref={`/${lang}/servicios`}
+            />
         </div>
     </div>
 </section>

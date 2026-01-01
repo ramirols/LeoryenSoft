@@ -21,32 +21,52 @@ const { lang } = Astro.params as { lang: Lang };
 const posts = await getCollection("blog");
 const latest = posts.slice(0, 3);
 
-const servicios =
-	lang === "es"
-		? [
-				{
-					nombre: "Landing Page",
-					descripcion: "Página web profesional para emprendedores",
-					imagen: "",
-				},
-				{
-					nombre: "Web Corporativa",
-					descripcion: "Web empresarial optimizada para SEO",
-					imagen: "",
-				},
-			]
-		: [
-				{
-					nombre: "Landing Page",
-					descripcion: "Professional landing page",
-					imagen: "",
-				},
-				{
-					nombre: "Corporate Website",
-					descripcion: "SEO optimized corporate website",
-					imagen: "",
-				},
-			];
+// const servicios =
+// 	lang === "es"
+// 		? [
+// 				{
+// 					nombre: "Landing Page",
+// 					descripcion: "Página web profesional para emprendedores",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Web Corporativa",
+// 					descripcion: "Web empresarial optimizada para SEO",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Software a medida",
+// 					descripcion: "Software personalizado para empresas",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Aplicaciones móviles",
+// 					descripcion: "Aplicaciones móviles para empresas",
+// 					imagen: "",
+// 				},
+// 			]
+// 		: [
+// 				{
+// 					nombre: "Landing Page",
+// 					descripcion: "Professional landing page",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Corporate Website",
+// 					descripcion: "SEO optimized corporate website",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Custom Software",
+// 					descripcion: "Custom software development for businesses",
+// 					imagen: "",
+// 				},
+// 				{
+// 					nombre: "Mobile Apps",
+// 					descripcion: "Mobile apps development for businesses",
+// 					imagen: "",
+// 				}
+// 			];
 ---
 
 <BaseLayout
@@ -59,7 +79,7 @@ const servicios =
 		: "Custom software, websites and SEO"}
 >
 	<Hero lang={lang} client:load />
-	<Services servicios={servicios} lang={lang} />
+	<Services lang={lang} onlyFeatured/>
 	<ProyectosGrid lang={lang} />
 	<TestimonialSlider client:load lang={lang} />
 

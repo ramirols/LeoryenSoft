@@ -9,14 +9,8 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: Lang };
-
-const servicios = [
-    { nombre: "Landing Page", descripcion: "Landing Page", imagen: "" },
-    { nombre: "Landing Page", descripcion: "Landing Page", imagen: "" },
-    { nombre: "Landing Page", descripcion: "Landing Page", imagen: "" },
-];
 ---
 
 <BaseLayout lang={lang} title="Servicios">
-    <Services servicios={servicios} lang={lang} />
+    <Services lang={lang} />
 </BaseLayout>
