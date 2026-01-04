@@ -119,7 +119,7 @@ const Header = ({ lang = "es" }) => {
                     className="text-3xl font-black tracking-wider flex-shrink-0"
                 >
                     <span className="text-secondary">Leoryen</span>
-                    <span className="text-white">Soft</span>
+                    <span className="text-white"> Soft</span>
                 </a>
 
                 {/* Desktop Nav */}
