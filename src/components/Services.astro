@@ -1,16 +1,5 @@
 ---
-import {
-    Laptop,
-    Code,
-    Boxes,
-    Check,
-    Zap,
-    Rocket,
-    MessageCircle,
-    ShieldCheck,
-    Phone,
-} from "lucide-astro";
-
+import { Laptop, Code, Boxes, Phone } from "lucide-astro";
 import ServiceCard from "./ServiceCard.astro";
 import { servicesData } from "../data/services";
 
@@ -46,7 +35,11 @@ const t = {
             automation: "Automatizaciones",
             scale: "Escalabilidad",
             support: "Soporte prioritario",
+            android: "Aplicaciones Android",
+            ios: "Aplicaciones iOS",
+            marketing: "Estrategias de marketing digital",
         },
+
         ctaStart: "Comenzar ahora",
         ctaAll: "Ver todos los servicios",
     },
@@ -74,13 +67,26 @@ const t = {
             automation: "Automations",
             scale: "Scalability",
             support: "Priority support",
+            android: "Android applications",
+            ios: "iOS applications",
+            marketing: "Digital marketing strategies",
         },
+
         ctaStart: "Get started",
         ctaAll: "View all services",
     },
 }[lang];
 
-const plans = servicesData[lang];
+const plans = onlyFeatured
+    ? servicesData[lang].filter((p) => p.featured)
+    : servicesData[lang];
+
+const serviceIcons = {
+    laptop: Laptop,
+    code: Code,
+    boxes: Boxes,
+    phone: Phone,
+};
 ---
 
 <section id="planes-precios" class="bg-white py-24">
@@ -95,70 +101,31 @@ const plans = servicesData[lang];
         </header>
 
         <div class="grid gap-10 md:grid-cols-3">
-            <!-- STARTER -->
-            <ServiceCard
-                icon={Laptop}
-                badge={t.badges.starter}
-                title={plans[0].nombre}
-                price={t.prices.starter}
-                features={[
-                    { icon: "check", text: t.features.responsive },
-                    { icon: "zap", text: t.features.seoBasic },
-                    { icon: "rocket", text: t.features.speed },
-                    { icon: "message", text: t.features.contact },
-                ]}
-                ctaText={t.ctaStart}
-                ctaHref={`/${lang}#contacto`}
-            />
-
-            <!-- POPULAR -->
-            <ServiceCard
-                icon={Code}
-                badge={t.badges.popular}
-                title={plans[1].nombre}
-                price={t.prices.popular}
-                highlight
-                features={[
-                    { icon: "check", text: t.features.responsive },
-                    { icon: "zap", text: t.features.seoAdvanced },
-                    { icon: "rocket", text: t.features.speed },
-                    { icon: "message", text: t.features.contact },
-                ]}
-                ctaText={t.ctaStart}
-                ctaHref={`/${lang}#contacto`}
-            />
-
-            <!-- PREMIUM -->
-            <ServiceCard
-                icon={Boxes}
-                badge={t.badges.business}
-                title={plans[2].nombre}
-                price={t.prices.premium}
-                features={[
-                    { icon: "check", text: t.features.custom },
-                    { icon: "zap", text: t.features.automation },
-                    { icon: "rocket", text: t.features.scale },
-                    { icon: "shield", text: t.features.support },
-                ]}
-                ctaText={t.ctaAll}
-                ctaHref={`/${lang}/servicios`}
-            />
-
-            <!-- Aplicaciones móviles -->
-            <ServiceCard
-                icon={Phone}
-                badge={t.badges.business}
-                title={plans[3].nombre}
-                price={t.prices.premium}
-                features={[
-                    { icon: "check", text: t.features.custom },
-                    { icon: "zap", text: t.features.automation },
-                    { icon: "rocket", text: t.features.scale },
-                    { icon: "shield", text: t.features.support },
-                ]}
-                ctaText={t.ctaAll}
-                ctaHref={`/${lang}/servicios`}
-            />
+            {
+                plans.map((plan) => (
+                    <ServiceCard
+                        icon={serviceIcons[plan.icon]}
+                        badge={
+                            plan.badgeKey ? t.badges[plan.badgeKey] : undefined
+                        }
+                        title={plan.nombre}
+                        price={plan.price}
+                        highlight={plan.highlight}
+                        features={plan.features.map((f) => ({
+                            icon: f.icon,
+                            text: t.features[f.textKey],
+                        }))}
+                        ctaText={
+                            plan.cta.type === "contact" ? t.ctaStart : t.ctaAll
+                        }
+                        ctaHref={
+                            plan.cta.type === "contact"
+                                ? `/${lang}#contacto`
+                                : `/${lang}/servicios`
+                        }
+                    />
+                ))
+            }
         </div>
     </div>
 </section>
